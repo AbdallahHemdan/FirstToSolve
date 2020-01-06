@@ -29,3 +29,6 @@
      <td align="center"><a href="https://github.com/Mahboub99"><img src="https://avatars3.githubusercontent.com/u/43186742?s=460&v=4" width="150px;" alt=""/><br /><sub><b>Ahmed Mahboub</b></sub></a><br /></td>
   </tr>
  </table>
+
+### ⚖ Licence
+MIT Licence.
