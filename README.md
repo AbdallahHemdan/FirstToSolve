@@ -2,10 +2,10 @@
 [![GitHub forks](https://img.shields.io/github/forks/AbdallahHemdan/FirstToSolve)](https://github.com/AbdallahHemdan/FirstToSolve/network)
 [![GitHub stars](https://img.shields.io/github/stars/AbdallahHemdan/FirstToSolve)](https://github.com/AbdallahHemdan/FirstToSolve/stargazers)
 [![GitHub license](https://img.shields.io/github/license/AbdallahHemdan/FirstToSolve)](https://github.com/AbdallahHemdan/FirstToSolve/blob/master/LICENSE)
-# 🥇 FirstToSolve 
+# 🥇 A4A 
 ### 🔎 What is ```FirstToSolve``` ❔❕
 --------------------------------
-**First To Solve** is a competitve programming website to manage competitve programming <br> regualr activites, It is maintained by a group of competitive programmers from FECU to help competitve programmer to train for problems from different topic and compete each others to get maximum benfit from the training.
+**A4A** is a competitve programming website to manage competitve programming <br> regualr activites, It is maintained by a group of competitive programmers from FECU to help competitve programmer to train for problems from different topic and compete each others to get maximum benfit from the training.
 
 **We aren't a real judge**, actually we are a virtual judge not a real judge, we grab problems from other reqular online judges like CodeForces, HackerRank, UVA, SPOJ .. etc and simulate submissions to other online judges and provide the user with the verdict besides adding more additional features like __Creating Contests, Groups, Teams and Organizations, Writing blogs and share it with CP community.__
 
