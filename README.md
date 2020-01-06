@@ -5,9 +5,9 @@
 # 🥇 A4A 
 ### 🔎 What is ```FirstToSolve``` ❔❕
 --------------------------------
-**A4A** is a competitve programming website to manage competitve programming <br> regualr activites, It is maintained by a group of competitive programmers from FECU to help competitve programmer to train for problems from different topic and compete each others to get maximum benfit from the training.
+**A4A** is a competitive programming website to manage competitive programming <br> regular activities, It is maintained by a group of competitive programmers from FECU to help competitive programmer to train for problems from different topic and compete with each other to get maximum benefit from the training.
 
-**We aren't a real judge**, actually we are a virtual judge not a real judge, we grab problems from other reqular online judges like CodeForces, HackerRank, UVA, SPOJ .. etc and simulate submissions to other online judges and provide the user with the verdict besides adding more additional features like __Creating Contests, Groups, Teams and Organizations, Writing blogs and share it with CP community.__
+**We aren't a real judge**, actually we are a virtual judge not a real judge, we grab problems from other regular online judges like CodeForces, HackerRank, UVA, SPOJ .. etc and simulate submissions to other online judges and provide the user with the verdict besides adding more additional features like __Creating Contests, Groups, Teams and Organizations, Writing blogs and share it with CP community.__
 
 ### 📷 ScreenShots 
 -------------------
@@ -32,3 +32,5 @@
 
 ### ⚖ Licence
 MIT Licence.
+
+
