@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - My ASP.NET Application</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="padding-top:unset; padding-bottom:unset">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		@*<a class="nav-link" href='@Url.Action("Index", "Home")'>Home <span class="sr-only">(current)</span></a>*@
+		<a class="nav-link">@Html.ActionLink("✔A4A", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav dropdown-menu-lg-left">
+				<li class="nav-item">
+					<a class="nav-link all-upper" href='@Url.Action("Index", "Home")' style="color:#000000;font-weight:bold;">
+						<span style="">HOME</span>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link all-upper" href='@Url.Action("ViewAllUsers", "User")' style="color:#000000;font-weight:bold">USER</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link all-upper" href='@Url.Action("ProblemSet", "Problem")' style="color:#000000;font-weight:bold">PROBLEMSET</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link all-upper" href='@Url.Action("ViewContests", "Contest")' style="color:#000000;font-weight:bold">CONTEST</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link all-upper" href='@Url.Action("ViewAllBlogs", "Blog")' style="color:#000000;font-weight:bold">BLOGS</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link all-upper" href='@Url.Action("ViewAllGroups", "Group")' style="color:#000000;font-weight:bold">GROUP</a>
+				</li>
+				@*<li class="nav-item">
+					<a class="nav-link all-upper" href='@Url.Action("ViewAllOrgs", "Org")' style="color:#000000;font-weight:bold">ORGANIZATION</a>
+				</li>*@
+				<li class="nav-item">
+					<a class="nav-link all-upper" href='@Url.Action("ViewAllTeams", "Team")' style="color:#000000;font-weight:bold">TEAM</a>
+				</li>
+			</ul>
+		</div>
+		<div class="collapse navbar-collapse">
+			<ul class="navbar-nav ml-auto">
+				<li class="nav-item">
+					<a class="nav-link all-upper" href='@Url.Action("Login", "User")' style="color:#78C2AD;font-weight:bold">Login</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link all-upper" href='@Url.Action("CreateUser", "User")'style="color:#78C2AD;font-weight:bold">Register</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	
+	<div class="container body-content">
+		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; @DateTime.Now.Year - A4A</p>
+		</footer>
+	</div>
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
+</body>
+</html>

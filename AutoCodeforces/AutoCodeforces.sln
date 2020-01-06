@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoCodeforces", "AutoCodeforces\AutoCodeforces.csproj", "{C9948FD2-65F0-468C-8243-84024B0472CA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9948FD2-65F0-468C-8243-84024B0472CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9948FD2-65F0-468C-8243-84024B0472CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9948FD2-65F0-468C-8243-84024B0472CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9948FD2-65F0-468C-8243-84024B0472CA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1185DFF6-F8B2-4F81-9A17-DD63D693B468}
+	EndGlobalSection
+EndGlobal

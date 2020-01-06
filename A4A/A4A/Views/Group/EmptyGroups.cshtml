@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "EmptyGroups";
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+    string UserName = ViewBag.UserName;
+    int id = 0;
+    int.TryParse(Convert.ToString(ViewBag.ID), out id);
+}
+<br/>
+<h2 style="color: #a52a2a">❌ Sorry, you have no groups..</h2>
+<br />
+<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllGroups", "Group", new {id = id , UserName = UserName}, null)';return false;">All Groups &raquo;</button>
+<button style="margin-right:6px;"class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyGroups", "Group",new {id = id , UserName = UserName}, null)';return false;">My Groups &raquo;</button>
+<button style="margin-right:6px;"class="btn btn-outline-primary" onclick="location.href='@Url.Action("CreateGroup", "Group", new {id = id , UserName = UserName}, null)';return false;">Create Group &raquo;</button>

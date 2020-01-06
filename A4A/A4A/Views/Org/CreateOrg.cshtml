@@ -1,0 +1,39 @@
+﻿@model A4A.Models.OrgModel
+
+@{
+    ViewBag.Title = "CreateOrg";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+<h2>🔧 Create Organization</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+       
+
+        <div class="form-group">
+            <div class="col-md-10">
+				<label style="color:#000000;font-size:20px;">Organization Name</label>
+                @Html.EditorFor(model => model.OrgName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OrgName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-outline-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

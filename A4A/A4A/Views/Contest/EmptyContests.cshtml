@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "EmptyContests";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<br />
+<h2 style="color: #a52a2a">❌ Sorry, you have no contest..</h2>
+
+
+<p>
+	<br />
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewContests", "Contest")';return false;">View Contests &raquo;</button>
+	<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyContests", "Contest")';return false;">My Contests &raquo;</button>
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("InsertContest", "Contest")';return false;">Create Contest &raquo;</button>
+</p>
+
+<br />

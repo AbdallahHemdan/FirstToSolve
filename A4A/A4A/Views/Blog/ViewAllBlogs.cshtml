@@ -1,0 +1,66 @@
+﻿@using A4A.DataAccess
+@model IEnumerable<A4A.Models.BlogModel>
+
+@{
+    ViewBag.Title = "View All Blogs";
+    if (ViewBag.ID == 0)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+
+    string temp = Convert.ToString(Session["UserName"]);
+    int temp2 = Convert.ToInt32(Session["ID"]);
+
+}
+<br/>
+<h2>📜 View All Blogs</h2>
+<p>
+    <br />
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllBlogs", "Blog", new {id = ViewBag.ID, UserName = ViewBag.UserName})';return false;">View All Blogs &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("InsertBlog", "Blog", new {id = ViewBag.ID, UserName = ViewBag.UserName})';return false;">Add Blog &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyBlogs", "Blog", new {id = ViewBag.ID, UserName = ViewBag.UserName})';return false;">View My Blogs &raquo;</button>
+</p>
+<table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0">
+    <tr class="table-primary">
+        
+        <th>
+            Author
+        </th>
+        <th>
+            Title
+        </th>
+        <th>
+            🔍 Explore
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.BlogWriterName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BlogTitle)
+        </td>
+    
+        <td>
+            @Html.ActionLink("View", "ViewBlog", new { BlogID = item.BlogID, id = ViewBag.ID, UserName = ViewBag.UserName, Blog = item })
+        </td>
+        <td>
+            @{
+                DBController db = new DBController();
+                if (db.SelectTypeById(ViewBag.ID) == "Admin")
+                {
+                    @Html.ActionLink("Delete", "DeleteBlog", new { BlogID = item.BlogID, ID = ViewBag.ID, UserName = ViewBag.UserName })
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>

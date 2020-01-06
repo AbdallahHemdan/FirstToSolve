@@ -1,0 +1,80 @@
+﻿@using Microsoft.Ajax.Utilities
+@using OpenQA.Selenium.Internal
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Solve it or Leave it</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body style="padding-top:unset; padding-bottom:unset">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    @{
+        string s = ViewBag.UserName;
+        int id = 0;
+        bool Done = int.TryParse(Convert.ToString(ViewBag.ID), out id);
+    }
+    <a class="nav-link">@Html.ActionLink("✔A4A", "Index", "Home", new {area = "", id = id, UserName = s }, new {@class = "navbar-brand"})</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav dropdown-menu-lg-left">
+            <li class="nav-item">
+                <a class="nav-link all-upper" href='@Url.Action("Index", "Home", new {id = id, UserName = s})' style="color: #000000; font-weight: bold;">
+                    <span style="">HOME</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link all-upper" href='@Url.Action("ViewAllUsers", "User", new {id = id, UserName = s}, null)' style="color: #000000; font-weight: bold">USER</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link all-upper" href='@Url.Action("ProblemSet", "Problem", new {id = id, UserName = s}, null)' style="color: #000000; font-weight: bold">PROBLEMSET</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link all-upper" href='@Url.Action("ViewContests", "Contest", new {id = id, UserName = s}, null)' style="color: #000000; font-weight: bold">CONTEST</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link all-upper" href='@Url.Action("ViewAllBlogs", "Blog", new {id = id, UserName = s}, null)' style="color: #000000; font-weight: bold">BLOGS</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link all-upper" href='@Url.Action("ViewAllGroups", "Group", new {id = id, UserName = s}, null)' style="color: #000000; font-weight: bold">GROUP</a>
+            </li>
+            @*<li class="nav-item">
+                <a class="nav-link all-upper" href='@Url.Action("ViewAllOrgs", "Org")' style="color: #000000; font-weight: bold">ORGANIZATION</a>
+            </li>*@
+            <li class="nav-item">
+                <a class="nav-link all-upper" href='@Url.Action("ViewAllTeams", "Team", new {id = id, UserName = s}, null)' style="color: #000000; font-weight: bold">TEAM</a>
+            </li>
+        </ul>
+
+
+
+    </div>
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link all-upper" href='@Url.Action("ViewUser", "User", new {id = id, IV = id, UserName = s}, null)' style="color: #000000; font-weight: bold">@s</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link all-upper" href='@Url.Action("Logout", "User", new {ID = id}, null)' style="color: #000000; font-weight: bold">Logout</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

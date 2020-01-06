@@ -1,0 +1,59 @@
+﻿@model IEnumerable<A4A.Models.UsersModel>
+
+@{
+    ViewBag.Title = "ViewAllUsers";
+    if (ViewBag.id == 0 || ViewBag.id == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+    string s = ViewBag.UserName;
+    int IV = 0;
+    bool Done = int.TryParse(Convert.ToString(ViewBag.ID), out IV);
+    bool ShowFriends = false;
+
+}
+<br />
+<h2>👨‍💻 Users</h2>
+
+<p>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllUsers", "User", new {id = IV, UserName  = s})';return false;">View All Users &raquo;</button>
+    <button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("AddFriend", "User",new {ID = IV, UserName  = s})';return false;">Add Friend &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("Friends", "User", new {ID = IV, UserName  = s})';return false;">View My Friends &raquo;</button>
+</p>
+
+<table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0">
+    <tr class="table-primary">
+        <th style="font-style:inherit">
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        <th>
+			Explore
+		</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @{
+                    if (item.ID == IV) { ShowFriends = true; } else { ShowFriends = false; }
+
+                }
+                @Html.ActionLink("View", "ViewUser", "User", new { id = item.ID, IV = IV, UserName = s ,ShowFriends =ShowFriends}, null)
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,19 @@
+﻿@model A4A.Models.GroupModel
+
+@{
+    ViewBag.Title = "GroupOptions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2>💡 Create..View..Explore to Build a Community..</h2>
+<br />
+
+<button class="btn btn-primary" onclick="location.href='@Url.Action("CreateGroup", "Home")';return false;" style="font: bold 18px Arial; margin-right:9px">Create Group</button>
+<button class="btn btn-primary" onclick="location.href='@Url.Action("ViewMyGroups", "Home")';return false;" style="font: bold 18px Arial; margin-right:9px">View My Groups</button>
+<button class="btn btn-primary" onclick="location.href='@Url.Action("ExploreGroups", "Home")';return false;" style="font: bold 18px Arial; margin-right:9px">Explore Groups</button>
+
+<br /><br /><br />
+<div>
+	@Html.ActionLink("Back to Home Page", "Index")
+</div>

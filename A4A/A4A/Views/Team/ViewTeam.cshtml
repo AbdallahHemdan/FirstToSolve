@@ -1,0 +1,76 @@
+﻿@model A4A.Models.TeamModel
+
+@{
+    ViewBag.Title = "ViewTeam";
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+    string UserName = ViewBag.UserName;
+    int id = 0;
+    int.TryParse(Convert.ToString(ViewBag.ID), out id);
+}
+
+<h2>Teams</h2>
+<tr>
+    <th>
+        @Html.ActionLink("Teams", "ViewAllTeams", new { id = id, UserName = UserName })
+    </th>
+    <th>
+        @Html.ActionLink("My Teams", "ViewMyTeams", new { id = id, UserName = UserName })
+    </th>
+    <th>
+        @Html.ActionLink("Create Team", "CreateTeam", new { id = id, UserName = UserName })
+    </th>
+</tr>
+
+<div>
+    <h4>TeamModel</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TeamName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TeamName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaderID)
+        </dt>
+
+        <dd>
+            @ViewBag.Leader
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Member2)
+        </dt>
+
+        <dd>
+            @ViewBag.Member2
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Member3)
+        </dt>
+
+        <dd>
+            @ViewBag.Member3
+        </dd>
+
+    </dl>
+</div>

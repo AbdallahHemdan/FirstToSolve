@@ -1,0 +1,71 @@
+﻿@using System.Data
+@using A4A.DataAccess
+@model IEnumerable<A4A.Models.TeamModel>
+
+@{
+    ViewBag.Title = "ViewAllTeams";
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+    string UserName = ViewBag.UserName;
+    int id = 0;
+    int.TryParse(Convert.ToString(ViewBag.ID), out id);
+}
+<br />
+<h2>🏆 Teams</h2>
+
+
+<p>
+	<br />
+	@*<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllTeams", "Team", new { id, UserName })';return false;">View All Teams &raquo;</button>*@
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyTeams", "Team", new { id = id, UserName = UserName })';return false;">View My Teams &raquo;</button>
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("CreateTeam", "Team", new { id = id, UserName = UserName })';return false;">Create Team &raquo;</button>
+</p>
+
+<table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0">
+    <tr class="table-primary">
+        <th>
+            <p>Team Name</p>
+        </th>
+        <th>
+            <p>Team Leader</p>
+        </th>
+        <th>
+            🔍 Explore
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TeamName)
+        </td>
+        <td>
+            @{
+                DBController db = new DBController();
+                DataTable dt = db.SelectUserNameByID(Convert.ToInt32(item.LeaderID));
+                UserName = Convert.ToString(dt.Rows[0]["Fname"]) + Convert.ToString(dt.Rows[0]["Lname"]);
+                @Html.DisplayFor(modelItem => UserName);
+            }
+            
+        </td>
+        <td>
+            @Html.ActionLink("View", "ViewTeam", "Team", new { TeamID = item.TeamID, id = id, UserName = UserName }, null)
+        </td>
+        <td>
+            @{
+                if (db.SelectTypeById(ViewBag.ID) == "Admin")
+                {
+                    @Html.ActionLink("Delete", "DeleteTeam", new { TeamID = item.TeamID, ID = ViewBag.ID, UserName = ViewBag.UserName })
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,116 @@
+﻿@model A4A.Models.ContestModel
+
+@{
+    ViewBag.Title = "InsertContest";
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+    string UserName = ViewBag.UserName;
+    int id = 0;
+    int.TryParse(Convert.ToString(ViewBag.ID), out id);
+}
+<br />
+<h2>🔗 Add Contest</h2>
+
+<p>
+	<br />
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewContests", "Contest")';return false;">View All Contests &raquo;</button>
+	<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyContests", "Contest")';return false;">My Contests &raquo;</button>
+</p>
+
+
+@using (Html.BeginForm(new { id, UserName }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+		@*<div class="form-group">*@
+            @*@Html.LabelFor(model => model.ContestID, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            @*<div class="col-md-10">
+				<label style="color:#000000;font-size:20px;">Contest ID</label>
+                @Html.EditorFor(model => model.ContestID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ContestID, "", new { @class = "text-danger" })
+            </div>*@
+        @*</div>*@
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.ContestName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+				<label style="color:#000000;font-size:20px;">Contest Name</label>
+				@Html.EditorFor(model => model.ContestName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ContestName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.ContestLength, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+				<label style="color:#000000;font-size:20px;">Contest Length</label>
+                @Html.EditorFor(model => model.ContestLength, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ContestLength, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Problem1, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Problem1, ViewBag.Problem1 as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Problem2, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Problem2, ViewBag.Problem2 as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Problem3, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Problem3, ViewBag.Problem3 as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Problem4, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Problem4, ViewBag.Problem4 as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Problem5, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.Problem5, ViewBag.Problem5 as SelectList, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <br />
+    <div class="form-group">
+
+        <div class="col-md-offset-2 col-md-10">
+            @if (ViewBag.ID == 0)
+            {
+                <input type="submit" value="Create" class="btn btn-primary"  disabled/>
+                <p>You have to log in to create a contest</p>
+            }
+            else
+            {
+                <input type="submit" value="Create" class="btn btn-primary" />
+            }
+        </div>
+    </div>
+    }
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

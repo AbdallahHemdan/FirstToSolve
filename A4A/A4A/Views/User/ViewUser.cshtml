@@ -1,0 +1,57 @@
+﻿@model A4A.Models.AccountModel
+
+@{
+    ViewBag.Title = "ViewUser";
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+    string s = ViewBag.UserName;
+    bool ShowFriends = ViewBag.ShowFriends;
+    int IV = 0;
+    bool Done = int.TryParse(Convert.ToString(ViewBag.ID), out IV);
+}
+
+<br />
+<h2>👀 View User</h2>
+<br />
+
+<p>
+<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllUsers", "User", new {id = IV, UserName  = s})';return false;">View All Users &raquo;</button>
+<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("AddFriend", "User",new {ID = IV, UserName  = s})';return false;">Add Friend &raquo;</button>
+<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("Friends", "User", new {ID = IV, UserName  = s})';return false;">View My Friends &raquo;</button>
+</p>
+<table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0">
+	<tr class="table-primary">
+		<th style="font-style:inherit"> User Name</th>
+		<th> Email </th>
+		<th> Rating </th>
+		<th> Solve Problems </th>
+		<th> Binding Problems </th>
+	</tr>
+	<tr>
+		<td>
+			@Html.DisplayFor(model => model.Fname)
+			@Html.DisplayFor(model => model.Lname)
+		</td>
+		<td> @Html.DisplayFor(model => model.Email) </td>
+		<td> @Html.DisplayFor(model => model.Rating) </td>
+		<td> @Html.DisplayFor(model => model.Solved) </td>
+		<td> @Html.DisplayFor(model => model.Binding)</td>
+	</tr>
+	
+</table>
+
+<p>
+       @{ if (ShowFriends)
+            {
+           <span style="margin-right:15px;">@Html.ActionLink("Friends", "Friends", "User", new { ID = IV, UserName = s }, null)</span>
+            @Html.ActionLink("Add Friend", "AddFriend", "User", new { ID = IV, UserName = s, Email = "" }, null);
+            }
+        }
+
+</p>

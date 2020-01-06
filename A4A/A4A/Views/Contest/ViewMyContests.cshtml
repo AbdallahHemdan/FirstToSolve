@@ -1,0 +1,80 @@
+﻿@model IEnumerable<A4A.Models.ContestModel>
+
+@{
+    ViewBag.Title = "ViewMyContests";
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+    string UserName = ViewBag.UserName;
+    int id = 0;
+    int.TryParse(Convert.ToString(ViewBag.ID), out id);
+}
+
+<h2>Your Contests</h2>
+<tr>
+    <th>
+        @Html.ActionLink("Contests", "ViewContests", new { id, UserName })
+    </th>
+    <th>
+        @Html.ActionLink("MyContests", "ViewMyContests", new { id, UserName })
+    </th>
+    <th>
+        @Html.ActionLink("Create Contest", "InsertContest", new {id, UserName })
+    </th>
+</tr>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ContestID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContestName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContestDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContestLength)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContestWriterID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ContestWriterName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContestID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContestName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContestDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContestLength)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContestWriterID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ContestWriterName)
+        </td>
+        <td>
+            @Html.ActionLink("View", "ContestProblems", "Contest", new { ContestID = item.ContestID, id= id, UserName = UserName }, null)
+        </td>
+    </tr>
+}
+
+</table>

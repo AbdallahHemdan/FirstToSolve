@@ -1,0 +1,32 @@
+﻿@model IEnumerable<A4A.Models.OrgModel>
+
+@{
+    ViewBag.Title = "ViewGroupOrgs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewGroupOrgs</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateOrg")
+</p>
+<table class="table">
+    <tr>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.OrgName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.OrgName)
+        </td>
+       
+    </tr>
+}
+
+</table>

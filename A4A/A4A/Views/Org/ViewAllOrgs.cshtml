@@ -1,0 +1,48 @@
+﻿@using A4A.DataAccess
+@model IEnumerable<A4A.Models.OrgModel>
+
+@{
+    ViewBag.Title = "ViewAllOrgs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2>🏫 All Organizations</h2>
+
+<p>
+	<br />
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("CreateOrg", "Org")';return false;">Create Org &raquo;</button>
+</p>
+
+@*<p>
+    @Html.ActionLink("Create New", "CreateOrg")
+</p>*@
+<table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0">
+    <tr  class="table-primary">
+        <th>
+            Organization Name
+        </th>
+        <th>
+			🔎Explore
+		</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+      
+        <td>
+            @Html.DisplayFor(modelItem => item.OrgName)
+        </td>
+        <td>
+            @{
+                DBController db = new DBController();
+                if (db.SelectTypeById(ViewBag.ID) == "Admin")
+                {
+                    @Html.ActionLink("Delete", "DeleteOrg", new { OrgID = item.OrgID, id = ViewBag.ID, UserName = ViewBag.UserName })
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>

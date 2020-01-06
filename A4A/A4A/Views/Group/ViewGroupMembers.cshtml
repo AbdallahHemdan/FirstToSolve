@@ -1,0 +1,69 @@
+﻿@model IEnumerable<A4A.Models.AccountModel>
+
+@{
+    ViewBag.Title = "ViewGroupMembers";
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+    string UserName = ViewBag.UserName;
+    int id = 0;
+    int.TryParse(Convert.ToString(ViewBag.ID), out id);
+}
+
+<h2>View Group Contests</h2>
+<tr>
+    <th>
+        @Html.ActionLink("Contests", "ViewGroupContests", new {GroupId = ViewBag.GroupId ,id = id, UserName = UserName})
+    </th>
+    <th>
+        @Html.ActionLink("Members", "ViewGroupMembers", new {GroupId = ViewBag.GroupId, id = id, UserName = UserName})
+    </th>
+</tr>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Fname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Lname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Lname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.Type)
+        </td>
+       
+    </tr>
+}
+
+</table>

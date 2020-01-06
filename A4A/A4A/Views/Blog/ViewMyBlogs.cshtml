@@ -1,0 +1,51 @@
+﻿@model IEnumerable<A4A.Models.BlogModel>
+
+@{
+    ViewBag.Title = "View My Blogs";
+    if (ViewBag.ID == 0)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+}
+
+<h2>ViewMyBlogs</h2>
+<p>
+    <br />
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllBlogs", "Blog", new {ID = ViewBag.ID, UserName = ViewBag.UserName})';return false;">View All Blogs &raquo;</button>
+    <button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("InsertBlog", "Blog", new {ID = ViewBag.ID, UserName = ViewBag.UserName})';return false;">Add Blog &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyBlogs", "Blog", new {ID = ViewBag.ID, UserName = ViewBag.UserName})';return false;">View My Blogs &raquo;</button>
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Title
+        </th>
+        <th>
+            Author
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.BlogTitle)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BlogWriterName)
+        </td>
+        <td>
+            @Html.ActionLink("View", "ViewBlog", new { BlogID = item.BlogID, id = ViewBag.ID, UserName = ViewBag.UserName, Blog = item })
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "DeleteBlog", new { BlogID = item.BlogID, id = ViewBag.ID, UserName = ViewBag.UserName })
+        </td>
+    </tr>
+}
+
+</table>

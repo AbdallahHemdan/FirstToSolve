@@ -1,0 +1,54 @@
+﻿@model List<A4A.Models.ProblemModel>
+
+@{
+	ViewBag.Title = "ContestProblems";
+	if (ViewBag.ID == 0 || ViewBag.ID == null)
+	{
+		Layout = "~/Views/Shared/_Layout.cshtml";
+	}
+	else
+	{
+		Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+	}
+	string UserName = ViewBag.UserName;
+	int id = 0;
+	int.TryParse(Convert.ToString(ViewBag.ID), out id);
+}
+
+<br />
+<h2>Contest Problems</h2>
+
+<table class="table">
+	<tr>
+		<th>
+			Name
+		</th>
+		<th>
+			Topic
+		</th>
+		<th>
+			Difficulty
+		</th>
+		<th></th>
+	</tr>
+
+@foreach (var item in Model) {
+	<tr>
+		<td>
+			@Html.DisplayFor(modelItem => item.ProblemName)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.ProblemTopic)
+		</td>
+		<td>
+			@Html.DisplayFor(modelItem => item.ProblemDifficulty)
+		</td>
+		<td>
+			@Html.ActionLink("View", "ViewProblem", "Problem", new { ProblemLink = item.ProblemLink, id= id, UserName = UserName, ProblemID = item.ProblemID }, null)
+		</td>
+	</tr>
+}
+
+</table>
+
+<br /><br /><br />

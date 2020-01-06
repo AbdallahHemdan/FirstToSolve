@@ -1,0 +1,74 @@
+﻿@using A4A.Models
+@model A4A.Models.TeamModel
+
+@{
+    ViewBag.Title = "CreateTeam";
+    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+    string UserName = ViewBag.UserName;
+    int id = 0;
+    int.TryParse(Convert.ToString(ViewBag.ID), out id);
+    ViewBag.LeaderID = id;
+}
+
+<br />
+<h2>🔧 Create Team</h2>
+
+
+<p>
+	<br />
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllTeams", "Team", new { id, UserName })';return false;">All Teams &raquo;</button>
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyTeams", "Team", new { id, UserName })';return false;">View My Teams &raquo;</button>
+	@*<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyGroups", "Group")';return false;">My Groups &raquo;</button>*@
+	@*<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("CreateGroup", "Group")';return false;">Create Group &raquo;</button>*@
+</p>
+
+@using (Html.BeginForm("CreateTeam", "Team", new { LeaderId = id, UserName = UserName }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.TeamName, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+				<label style="color:#000000;font-size:20px;">Team Name</label>
+                @Html.EditorFor(model => model.TeamName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TeamName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-10">
+				<label style="color:#000000;font-size:20px;">Member 2 Email</label>
+                @Html.EditorFor(model => model.Member2, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Member2, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @*@Html.LabelFor(model => model.TeamMembers[2], htmlAttributes: new { @class = "control-label col-md-2" })*@
+            
+            <div class="col-md-10">
+				<label style="color:#000000;font-size:20px;">Member 3 Email</label>
+                @Html.EditorFor(model => model.Member3, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Member3, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-outline-primary" />
+            </div>
+        </div>
+    </div>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

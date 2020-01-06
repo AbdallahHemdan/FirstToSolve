@@ -1,0 +1,70 @@
+﻿@model IEnumerable<A4A.Models.SubmissionModel>
+
+@{
+    ViewBag.Title = "View Problem";
+    if (ViewBag.ID == 0)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
+}
+<br/>
+<h2>View Submission</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            UserName
+        </th>
+        <th>
+            Verdict
+        </th>
+        <th>
+            Memory
+        </th>
+        <th>
+            Execution Time
+        </th>
+        <th>
+            Date
+        </th>
+        <th>
+            Language
+        </th>
+        <th>
+            Problem Name
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ViewBag.ContestantName
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubmissionVerdict)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubmissionMemory)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubmissionTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubmissionDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubmissionLang)
+            </td>
+            <td>
+                @Html.ViewBag.ProblemName
+            </td>
+        </tr>
+    }
+
+</table>

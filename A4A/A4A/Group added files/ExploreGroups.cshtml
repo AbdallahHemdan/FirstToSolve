@@ -1,0 +1,57 @@
+﻿@model IEnumerable<A4A.Models.GroupModel>
+
+@{
+    ViewBag.Title = "ExploreGroups";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>🔎 Explore Groups..</h2>
+<br />
+
+<p>
+	<button class="btn btn-primary" onclick="location.href='@Url.Action("CreateGroup", "Home")';return false;">Create Your Group</button>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.GroupId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GroupAdmin)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.GroupName)
+        </th>
+		<th>
+			View Group
+		</th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.GroupId)
+        </td>*@
+		<td>
+			@Html.DisplayFor(modelItem => item.GroupName)
+		</td>
+		<td>
+            @Html.DisplayFor(modelItem => item.GroupAdmin)
+        </td>
+        
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+
+        </td>
+    </tr>
+}
+
+</table>
+<br /><br /><br />
+<div>
+	@Html.ActionLink("Back to Home Page", "Index")
+</div>

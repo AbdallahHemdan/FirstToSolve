@@ -1,0 +1,49 @@
+﻿
+@{
+	ViewBag.Title = "Home Page";
+	if (ViewBag.ID == 0 || ViewBag.ID == null)
+	{
+		Layout = "~/Views/Shared/_Layout.cshtml";
+	}
+	else
+	{
+		Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+	}
+	string UserName = ViewBag.UserName;
+	int id = 0;
+	int.TryParse(Convert.ToString(ViewBag.ID), out id);
+}
+
+<br />
+<div class="jumbotron">
+	<div>
+		<h1>📊 A4A</h1>
+		<p class="lead">
+			A project joining people interested in and
+			taking part in programming contests. On one hand, A4A dedicated to programming and programming contests.
+			On the other hand, it is a platform where contests are held regularly,
+			the participant's skills are reflected by their rating and the former contests can be used to prepare.
+		</p>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-4">
+		<h2>Getting started</h2>
+		<p>
+			A4A gives you a bunch powerful, varing number of problems-based on different topics to increase your programming skills and help you to perform well in onsite-contests.
+		</p>
+		<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+	</div>
+	<div class="col-md-4">
+		<h2>Get more Skills</h2>
+		<p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+		<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+	</div>
+	<div class="col-md-4">
+		<h2>Web Hosting</h2>
+		<p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+		<p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+	</div>
+</div>
+
