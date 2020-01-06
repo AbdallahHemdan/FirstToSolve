@@ -3,7 +3,7 @@
 [![GitHub stars](https://img.shields.io/github/stars/AbdallahHemdan/FirstToSolve)](https://github.com/AbdallahHemdan/FirstToSolve/stargazers)
 [![GitHub license](https://img.shields.io/github/license/AbdallahHemdan/FirstToSolve)](https://github.com/AbdallahHemdan/FirstToSolve/blob/master/LICENSE)
 # 🥇 FirstToSolve 
-### What is ```FirstToSolve``` ❔❕
+### 🔎 What is ```FirstToSolve``` ❔❕
 --------------------------------
 **First To Solve** is a competitve programming website to manage competitve programming <br> regualr activites. 
 
