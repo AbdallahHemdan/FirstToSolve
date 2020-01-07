@@ -1,7 +1,16 @@
+<p align="center">
+  <a href="" rel="noopener">
+ <img width=400px height=210px src="https://github.com/AbdallahHemdan/A4A/blob/master/Screenshots/71862652-3a3d9a00-3103-11ea-9d08-9da5ab84cea9.png" alt="FirstToSolve logo"></a>
+</p>
+<h3 align="center">First To Solve</h3>
+
+<div align="center">
 [![GitHub issues](https://img.shields.io/github/issues/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/issues)
 [![GitHub forks](https://img.shields.io/github/forks/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/network)
 [![GitHub stars](https://img.shields.io/github/stars/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/stargazers)
 [![GitHub license](https://img.shields.io/github/license/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/blob/master/LICENSE)
+</div>
+
 # 🥇 A4A 
 ### 🔎 What is ```FirstToSolve``` ❔❕
 --------------------------------
