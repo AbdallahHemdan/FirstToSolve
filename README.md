@@ -1,10 +1,10 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=400px height=210px src="https://github.com/AbdallahHemdan/A4A/blob/master/Screenshots/71862652-3a3d9a00-3103-11ea-9d08-9da5ab84cea9.png" alt="FirstToSolve logo"></a>
+ <img width=400px height=210px src="https://github.com/AbdallahHemdan/A4A/blob/master/Screenshots/71863020-36f6de00-3104-11ea-9cc2-5d6c6c2fb579.png" alt="FirstToSolve logo"></a>
 </p>
 <h3 align="center">First To Solve</h3>
 
-<div align="center">
+<div align="center">  
 [![GitHub issues](https://img.shields.io/github/issues/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/issues)
 [![GitHub forks](https://img.shields.io/github/forks/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/network)
 [![GitHub stars](https://img.shields.io/github/stars/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/stargazers)
