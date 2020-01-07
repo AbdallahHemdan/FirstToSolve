@@ -4,13 +4,14 @@
 </p>
 <h3 align="center">First To Solve</h3>
 
-<div align="center">  
-[![GitHub issues](https://img.shields.io/github/issues/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/issues)
-[![GitHub forks](https://img.shields.io/github/forks/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/network)
-[![GitHub stars](https://img.shields.io/github/stars/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/stargazers)
-[![GitHub license](https://img.shields.io/github/license/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/blob/master/LICENSE)
+<div align="center">
+
+  [![Status](https://img.shields.io/badge/status-active-success.svg)]()
+  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](/LICENSE)
+
 </div>
 
+---
 # 🥇 A4A 
 ### 🔎 What is ```FirstToSolve``` ❔❕
 --------------------------------
@@ -39,7 +40,7 @@
   </tr>
  </table>
 
-### ⚖ Licence
+### ⚖ Licence&nbsp; &nbsp; &nbsp;
 [MIT Licence](https://github.com/AbdallahHemdan/A4A/blob/master/LICENSE)
 
 
