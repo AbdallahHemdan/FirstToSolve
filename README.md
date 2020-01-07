@@ -14,7 +14,6 @@
 </div>
 
 ---
-# 🥇 FirstToSolve 
 ### 🔎 What is ```FirstToSolve``` ❔❕
 --------------------------------
 **FirstToSolve** is a competitive programming website to manage competitive programming <br> regular activities, It is maintained by a group of competitive programmers from FECU to help competitive programmer to train for problems from different topic and compete with each other to get maximum benefit from the training.
