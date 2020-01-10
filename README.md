@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[![GitHub contributors](https://img.shields.io/github/contributors/AbdallahHemdan/FirstToSolve)](https://github.com/AbdallahHemdan/FirstToSolve/issues)
+[![GitHub contributors](https://img.shields.io/github/contributors/AbdallahHemdan/FirstToSolve)](https://github.com/AbdallahHemdan/FirstToSolve/contributors)
 [![GitHub issues](https://img.shields.io/github/issues/AbdallahHemdan/FirstToSolve)](https://github.com/AbdallahHemdan/FirstToSolve/issues)
 [![GitHub forks](https://img.shields.io/github/forks/AbdallahHemdan/FirstToSolve)](https://github.com/AbdallahHemdan/FirstToSolve/network)
 [![GitHub stars](https://img.shields.io/github/stars/AbdallahHemdan/FirstToSolve)](https://github.com/AbdallahHemdan/FirstToSolve/stargazers)
