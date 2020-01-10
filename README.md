@@ -6,10 +6,11 @@
 
 <div align="center">
 
-[![GitHub issues](https://img.shields.io/github/issues/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/issues)
-[![GitHub forks](https://img.shields.io/github/forks/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/network)
-[![GitHub stars](https://img.shields.io/github/stars/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/stargazers)
-[![GitHub license](https://img.shields.io/github/license/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/A4A/blob/master/LICENSE)
+[![GitHub contributors](https://img.shields.io/github/contributors/AbdallahHemdan/FirstToSolve)](https://github.com/AbdallahHemdan/FirstToSolve/issues)
+[![GitHub issues](https://img.shields.io/github/issues/AbdallahHemdan/FirstToSolve)](https://github.com/AbdallahHemdan/FirstToSolve/issues)
+[![GitHub forks](https://img.shields.io/github/forks/AbdallahHemdan/FirstToSolve)](https://github.com/AbdallahHemdan/FirstToSolve/network)
+[![GitHub stars](https://img.shields.io/github/stars/AbdallahHemdan/FirstToSolve)](https://github.com/AbdallahHemdan/FirstToSolve/stargazers)
+[![GitHub license](https://img.shields.io/github/license/AbdallahHemdan/A4A)](https://github.com/AbdallahHemdan/FirstToSolve/blob/master/LICENSE)
 
 </div>
 
