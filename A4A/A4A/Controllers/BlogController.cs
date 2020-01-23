@@ -12,21 +12,18 @@ namespace A4A.Controllers
 {
     public class BlogController : Controller
     {
-        // GET: Blog
-        public ActionResult ViewAllBlogs(int id = 0, string UserName = "")
+        public ActionResult ViewAllBlogs()
         {
-            ViewBag.ID = id;
-            ViewBag.UserName = UserName;
-
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectBlogs();
 
             if (dt == null)
             {
-                return RedirectToAction("EmptyBlogs", new {id, UserName});
+                return RedirectToAction("EmptyBlogs");
             }
 
-            List<BlogModel> list = new List<BlogModel>();
+            List<BlogModel> Blogs = new List<BlogModel>();
+
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 Models.BlogModel Blog = new BlogModel();
@@ -38,28 +35,34 @@ namespace A4A.Controllers
                     Blog.GroupID = Convert.ToInt32(dt.Rows[i]["GroupID"]);
                 else
                     Blog.GroupID = 0;
+
                 DataTable tmp_dt = dbController.SelectUserNameByID(Blog.BlogWriter);
                 Blog.BlogWriterName = Convert.ToString(tmp_dt.Rows[0]["Fname"]) + Convert.ToString(tmp_dt.Rows[0]["Lname"]);
-                list.Add(Blog);
+
+                Blogs.Add(Blog);
             }
-            return View(list);
+
+            return View(Blogs);
         }
-        public ActionResult ViewMyBlogs(int id = 0, string UserName = "")
+
+        public ActionResult ViewMyBlogs()
         {
-            if (id == 0 || id == null)
+            int ID = Convert.ToInt16(Session["ID"]);
+
+            if (ID == 0)
             {
                 return RedirectToAction("MustSignIn");
             }
 
             DBController dbController = new DBController();
-            DataTable dt = dbController.SelectMyBlogs(id);
+            DataTable dt = dbController.SelectMyBlogs(ID);
 
             if (dt == null)
             {
-                return RedirectToAction("EmptyBlogs", new {id, UserName});
+                return RedirectToAction("EmptyBlogs");
             }
 
-            List<BlogModel> list = new List<BlogModel>();
+            List<BlogModel> Blogs = new List<BlogModel>();
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 Models.BlogModel Blog = new BlogModel();
@@ -71,17 +74,17 @@ namespace A4A.Controllers
                     Blog.GroupID = Convert.ToInt32(dt.Rows[i]["GroupID"]);
                 else
                     Blog.GroupID = 0;
+
                 DataTable tmp_dt = dbController.SelectUserNameByID(Blog.BlogWriter);
                 Blog.BlogWriterName = Convert.ToString(tmp_dt.Rows[0]["Fname"]) + Convert.ToString(tmp_dt.Rows[0]["Lname"]);
-                list.Add(Blog);
+
+                Blogs.Add(Blog);
             }
 
-
-            ViewBag.ID = id;
-            ViewBag.UserName = UserName;
-            return View(list);
+            return View(Blogs);
         }
-        public ActionResult ViewBlog(int BlogID, int id = 0, string UserName = "")
+
+        public ActionResult ViewBlog(int BlogID)
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectABlogs(BlogID);
@@ -95,45 +98,42 @@ namespace A4A.Controllers
             DataTable tmp_dt = dbController.SelectUserNameByID(Blog.BlogWriter);
             Blog.BlogWriterName = Convert.ToString(tmp_dt.Rows[0]["Fname"]) + Convert.ToString(tmp_dt.Rows[0]["Lname"]);
 
-            ViewBag.ID = id;
-            ViewBag.UserName = UserName;
             return View(Blog);
         }
+
         [HttpPost]
-        public ActionResult InsertBlog(BlogModel Blog, int id = 0, string UserName = "")
+        public ActionResult InsertBlog(BlogModel Blog)
         {
+            int ID = Convert.ToInt16(Session["ID"]);
+
             DBController dbController = new DBController();
-            int done = dbController.InsertBlog(Blog.BlogTitle, id, 1, Blog.BlogContent);
-            return RedirectToAction("ViewAllBlogs", new { id, UserName });
+            int InsertionVerdict = dbController.InsertBlog(Blog.BlogTitle, ID, 1, Blog.BlogContent);
+
+            return RedirectToAction("ViewAllBlogs");
         }
 
-        public ActionResult InsertBlog(int id = 0, string UserName = "")
+        public ActionResult InsertBlog()
         {
-            if (id == 0 || id == null)
+            int ID = Convert.ToInt16(Session["ID"]);
+
+            if (ID == 0)
             {
                 return RedirectToAction("MustSignIn");
             }
 
-            ViewBag.id = id;
-            ViewBag.UserName = UserName;
             return View();
-
         }
 
-        public ActionResult DeleteBlog(int BlogId, int id = 0, string UserName = "")
+        public ActionResult DeleteBlog(int BlogId)
         {
             DBController db = new DBController();
             db.DeleteBlog(BlogId);
 
-            ViewBag.Id = id;
-            ViewBag.UserName = UserName;
-            return RedirectToAction("ViewAllBlogs", new {id = id, UserName= UserName});
+            return RedirectToAction("ViewAllBlogs");
         }
 
-        public ActionResult EmptyBlogs(int id = 0, string UserName = "")
+        public ActionResult EmptyBlogs()
         {
-            ViewBag.id = id;
-            ViewBag.UserName = UserName;
             return View();
         }
 

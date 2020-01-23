@@ -11,12 +11,17 @@ namespace A4A.Controllers
 {
     public class ContestController : Controller
     {
-        [Route("Contest/ViewContest")]
-        public ActionResult ViewContests(int id = 0, string UserName = "")
+        public ActionResult ViewContests()
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectContests();
-            List<ContestModel> list = new List<ContestModel>();
+
+            if (dt == null)
+            {
+                return RedirectToAction("EmptyContests");
+            }
+
+            List<ContestModel> Contests = new List<ContestModel>();
             for (int i = 0; i < dt.Rows.Count; ++i)
             { 
                 Models.ContestModel Contest = new ContestModel();
@@ -30,29 +35,29 @@ namespace A4A.Controllers
                 Contest.ContestWriterName = Convert.ToString(WriterName.Rows[0]["Fname"]) + " " +
                                             Convert.ToString(WriterName.Rows[0]["Lname"]);
 
-                list.Add(Contest);
+                Contests.Add(Contest);
             }
 
-            
-            ViewBag.ID = id;
-            ViewBag.UserName = UserName;
-            return View(list);
+            return View(Contests);
         }
 
-        public ActionResult ViewMyContests(int id = 0, string UserName = "") 
+        public ActionResult ViewMyContests() 
         {
-            if (id == 0)
+            int ID = Convert.ToInt16(Session["ID"]);
+            if (ID == 0)
             {
                 return RedirectToAction("MustSignIn");
             }
 
             DBController dbController = new DBController();
-            DataTable dt = dbController.SelectMyContests(id);
-            List<ContestModel> list = new List<ContestModel>();
+            DataTable dt = dbController.SelectMyContests(ID);
+
             if (dt == null)
             {
                 return RedirectToAction("EmptyContests");
             }
+
+            List<ContestModel> Contests= new List<ContestModel>();
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 Models.ContestModel Contest = new ContestModel();
@@ -60,25 +65,25 @@ namespace A4A.Controllers
                 Contest.ContestName = Convert.ToString(dt.Rows[i]["ContestName"]);
                 Contest.ContestDate = Convert.ToDateTime(dt.Rows[i]["ContestDate"]);
                 Contest.ContestLength = int.Parse(Convert.ToString(dt.Rows[i]["ContestLength"]));
-
                 Contest.ContestWriterID = int.Parse(Convert.ToString(dt.Rows[i]["ContestWriter"]));
-                DataTable WriterName = dbController.SelectUserNameByID(Contest.ContestWriterID);
-                Contest.ContestWriterName = Convert.ToString(WriterName.Rows[0]["Fname"]) + " " +
-                                            Convert.ToString(WriterName.Rows[0]["Lname"]);
 
-                list.Add(Contest);
+                DataTable WriterName = dbController.SelectUserNameByID(Contest.ContestWriterID);
+                Contest.ContestWriterName = Convert.ToString(WriterName.Rows[0]["Fname"]) 
+                                          + " " 
+                                          + Convert.ToString(WriterName.Rows[0]["Lname"]);
+
+                Contests.Add(Contest);
             }
 
-            ViewBag.id = id;
-            ViewBag.UserName = UserName;
-            return View(list);
+            return View(Contests);
         }
 
-        public ActionResult ContestProblems(int ContestID, int id = 0, string UserName = "")
+        public ActionResult ContestProblems(int ContestID)
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectContestProblems(ContestID);
-            List<ProblemModel> list = new List<ProblemModel>();
+
+            List<ProblemModel> Contests = new List<ProblemModel>();
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 ProblemModel problem = new ProblemModel();
@@ -87,26 +92,27 @@ namespace A4A.Controllers
                 problem.ProblemTopic = Convert.ToString(dt.Rows[i]["ProblemTopic"]);
                 problem.ProblemLink = Convert.ToString(dt.Rows[i]["ProblemLink"]);
                 problem.ProblemDifficulty = int.Parse(Convert.ToString(dt.Rows[i]["ProblemDifficulty"]));
-                list.Add(problem);
+                Contests.Add(problem);
             }
 
-            ViewBag.ID = id;
-            ViewBag.UserName = UserName;
-            return View(list);
+            return View(Contests);
         }
 
         [HttpPost]
-        public ActionResult InsertContest(ContestModel CM, int id, string UserName)
+        public ActionResult InsertContest(ContestModel CM)
         {
-            CM.ContestWriterID = id;
+            CM.ContestWriterID = Convert.ToInt16(Session["ID"]);
             DBController dbController = new DBController();
             dbController.InsertContest(CM);
-            return RedirectToAction("ViewContests", new { id, UserName });
+
+            return RedirectToAction("ViewContests");
         }
 
-        public ActionResult InsertContest(int id, string UserName)
+        public ActionResult InsertContest()
         {
-            if (id == 0)
+            int ID = Convert.ToInt16(Session["ID"]);
+
+            if (ID == 0)
             {
                 return RedirectToAction("MustSignIn");
             }
@@ -122,8 +128,6 @@ namespace A4A.Controllers
             ViewBag.Problem4 = new SelectList(AvailableProblems.Split(',').ToList(), "Problem4");
             ViewBag.Problem5 = new SelectList(AvailableProblems.Split(',').ToList(), "Problem5");
 
-            ViewBag.id = id;
-            ViewBag.UserName = UserName;
             return View(CM);
         }
 
@@ -136,13 +140,12 @@ namespace A4A.Controllers
         {
             return View();
         }
-        public ActionResult DeleteContest(int ContestID, int id = 0, string UserName = "")
+
+        public ActionResult DeleteContest(int ContestID)
         {
             DBController db = new DBController();
             db.DeleteContest(ContestID);
 
-            ViewBag.Id = id;
-            ViewBag.UserName = UserName;
             return RedirectToAction("ViewContests");
         }
     }

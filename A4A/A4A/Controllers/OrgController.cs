@@ -11,14 +11,11 @@ namespace A4A.Controllers
 {
     public class OrgController : Controller
     {
-        public ActionResult Index()
-        {
-            return RedirectToAction("ViewAllOrgs");
-        }
         public ActionResult CreateOrg()
         {
             return View();
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateOrg(OrgModel OM)

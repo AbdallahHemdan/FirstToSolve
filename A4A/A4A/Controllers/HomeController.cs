@@ -13,10 +13,12 @@ namespace A4A.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index(string UserName = "", int id = 0)
+        public ActionResult Index()
         {
-            ViewBag.ID = id;
-            ViewBag.UserName = UserName;
+            //initializing of ID in case of a guest not a user and to handle Errors
+            if (Session["ID"] == null)
+                Session["ID"] = 0;
+
             return View();
         }
 

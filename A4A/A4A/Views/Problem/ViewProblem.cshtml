@@ -2,7 +2,10 @@
 
 @{
     ViewBag.Title = "View Problem";
-    if (ViewBag.ID == 0)
+
+    int ID = Convert.ToInt16(Session["ID"]);
+
+    if (ID == 0)
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
@@ -26,7 +29,7 @@
 
 <br />
 
-@using (Html.BeginForm("Submit", "Problem", new { ProblemID = Model.ProblemID, id = ViewBag.ID, UserName = ViewBag.UserName },FormMethod.Post))
+@using (Html.BeginForm("Submit", "Problem", new { ProblemID = Model.ProblemID },FormMethod.Post))
 {
 <form>
 

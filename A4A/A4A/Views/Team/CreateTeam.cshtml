@@ -3,7 +3,9 @@
 
 @{
     ViewBag.Title = "CreateTeam";
-    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    int ID = Convert.ToInt16(Session["ID"]);
+
+    if (ID == 0)
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
@@ -11,10 +13,6 @@
     {
         Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
     }
-    string UserName = ViewBag.UserName;
-    int id = 0;
-    int.TryParse(Convert.ToString(ViewBag.ID), out id);
-    ViewBag.LeaderID = id;
 }
 
 <br />
@@ -23,13 +21,13 @@
 
 <p>
 	<br />
-	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllTeams", "Team", new { id, UserName })';return false;">All Teams &raquo;</button>
-	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyTeams", "Team", new { id, UserName })';return false;">View My Teams &raquo;</button>
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllTeams", "Team")';return false;">All Teams &raquo;</button>
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyTeams", "Team")';return false;">View My Teams &raquo;</button>
 	@*<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyGroups", "Group")';return false;">My Groups &raquo;</button>*@
 	@*<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("CreateGroup", "Group")';return false;">Create Group &raquo;</button>*@
 </p>
 
-@using (Html.BeginForm("CreateTeam", "Team", new { LeaderId = id, UserName = UserName }, FormMethod.Post))
+@using (Html.BeginForm("CreateTeam", "Team", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     

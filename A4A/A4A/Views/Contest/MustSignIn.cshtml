@@ -4,5 +4,12 @@
     Layout = "~/Views/Shared/MustSignIn.cshtml";
 }
 
+<p>
+    <br />
+    <button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewContests", "Contest")';return false;">View Contests &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyContests", "Contest")';return false;">My Contests &raquo;</button>
+    <button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("InsertContest", "Contest")';return false;">Create Contest &raquo;</button>
+</p>
+
 <h2>❌ You Must Login</h2>
 

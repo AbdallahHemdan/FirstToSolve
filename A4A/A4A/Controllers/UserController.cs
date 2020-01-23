@@ -14,32 +14,40 @@ namespace A4A.Controllers
 {
     public class UserController : Controller
     {
-        // GET: User
-        public ActionResult ViewAllUsers(int id = 0, string UserName = "")
+  
+        public ActionResult ViewAllUsers()
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectUsers();
 
-            List<UsersModel> list = new List<UsersModel>();
+            if (dt == null || dt.Rows.Count == 0)
+            {
+                return RedirectToAction("EmptyUsers");
+            }
+
+            List<UsersModel> Users = new List<UsersModel>();
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 UsersModel User = new UsersModel();
 
-                User.Name = Convert.ToString(dt.Rows[i]["Fname"]) + " " + Convert.ToString(dt.Rows[i]["Lname"]);
+                User.Name = Convert.ToString(dt.Rows[i]["Fname"]) 
+                          + " " 
+                          + Convert.ToString(dt.Rows[i]["Lname"]);
 
                 User.ID = int.Parse(Convert.ToString(dt.Rows[i]["UserID"]));
                 User.Rating = int.Parse(Convert.ToString(dt.Rows[i]["Rating"]));
-                list.Add(User);
+
+                Users.Add(User);
             }
 
-            ViewBag.id = id;
-            ViewBag.UserName = UserName;
-            return View(list);
+            return View(Users);
         }
-        public ActionResult ViewUser(int ID, int IV = 0, string UserName = "",bool ShowFriends = false)
+
+        public ActionResult ViewUser(int ID)
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectUser(ID);
+
             AccountModel User = new AccountModel();
 
             User.Fname = Convert.ToString(dt.Rows[0]["Fname"]);
@@ -48,10 +56,6 @@ namespace A4A.Controllers
             User.Rating = int.Parse(Convert.ToString(dt.Rows[0]["Rating"]));
             User.Binding = dbController.Binding(ID);
             User.Solved = dbController.Solved(ID);
-
-            ViewBag.ID = IV;
-            ViewBag.UserName = UserName;
-            ViewBag.ShowFriends = ShowFriends;
 
             return View(User);
         }
@@ -76,7 +80,6 @@ namespace A4A.Controllers
             return RedirectToAction("ViewAllUsers");
         }
 
-
         public ActionResult Login()
         {
             return View();
@@ -97,32 +100,38 @@ namespace A4A.Controllers
             {
                 //view of user (home page)
                 DataRow dr = db.SelectUserNameByID(id).Rows[0];
-                string UserName = Convert.ToString(dr["Fname"]) + Convert.ToString(dr["Lname"]);
+                string UserName = Convert.ToString(dr["Fname"])
+                                + " "
+                                + Convert.ToString(dr["Lname"]);
+
                 Session["ID"] = id;
                 Session["UserName"] = UserName;
-                return RedirectToAction("Index", "Home", new {UserName = UserName, id = id});
+
+                return RedirectToAction("Index", "Home");
             }
         }
+
         public ActionResult Logout()
         {
-            ViewBag.id = 0;
+            Session["ID"] = 0;
+
             return RedirectToAction("Index", "Home");
         }
 
-        public ActionResult Friends(int ID = 0, string UserName = "")
+        public ActionResult Friends()
         {
-            ViewBag.id = ID;
-            ViewBag.UserName = UserName;
+            int ID = Convert.ToInt16(Session["ID"]);
 
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectFriends(ID);
+
             if (dt == null && ID == 0)
             {
                 return RedirectToAction("MustSignIn");
             }
             else if (dt == null)
             {
-                return RedirectToAction("NoFriends", "User", new { id = ID, UserName = UserName });
+                return RedirectToAction("NoFriends", "User");
             }
 
             List<UsersModel> list = new List<UsersModel>();
@@ -140,19 +149,17 @@ namespace A4A.Controllers
 
             return View(list);
         }
-        public ActionResult NoFriends(int ID = 0, string UserName = "")
+
+        public ActionResult NoFriends()
         {
-            ViewBag.ID = ID;
-            ViewBag.UserName = UserName;
             return View();
         }
 
-        public ActionResult AddFriend(int ID = 0,string UserName="")
+        public ActionResult AddFriend()
         {
-            ViewBag.ID = ID;
-            ViewBag.UserName = UserName;
+            int ID = Convert.ToInt16(Session["ID"]);
 
-            if (ID == null || ID == 0)
+            if (ID == 0)
             {
                 return RedirectToAction("MustSignIn");
             }
@@ -162,10 +169,15 @@ namespace A4A.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddFriend(int UserID = 0, string UserName = "", string Email = "")
+        //TODO add friend by UserName or from the friend profile
+        public ActionResult AddFriend(string Email = "")
         {
             DBController db = new DBController();
             int FriendID = db.Select_UserID_By_Email(Email);
+
+            int UserID = Convert.ToInt16(Session["ID"]);
+            string UserName = Session["ID"].ToString();
+
             if (UserID == FriendID)
             {
                 return RedirectToAction("CanNot", new {id = UserID, UserName = UserName});
@@ -182,23 +194,28 @@ namespace A4A.Controllers
             else
             {
                 db.InsertFriend(UserID, FriendID);
-                return RedirectToAction("ViewUser" ,"User" ,new {ID =FriendID ,IV =UserID , UserName = UserName});
+                return RedirectToAction("ViewUser" ,"User" ,new {ID =FriendID});
             }
         }
 
+        //Admin or User
         public string GetType(int id)
         {
             DBController db = new DBController();
             return Convert.ToString(db.SelectTypeById(id));
         }
 
-        public ActionResult CanNot(int id = 0, string UserName = "")
+        public ActionResult CanNot()
         {
-            ViewBag.ID = id;
-            ViewBag.UserName = UserName;
             return View();
         }
+
         public ActionResult MustSignIn()
+        {
+            return View();
+        }
+
+        public ActionResult EmptyUsers()
         {
             return View();
         }

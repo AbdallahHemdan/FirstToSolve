@@ -2,7 +2,9 @@
 
 @{
     ViewBag.Title = "Insert Blog";
-    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    int ID = Convert.ToInt16(Session["ID"]);
+
+    if (ID == 0)
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
@@ -10,9 +12,6 @@
     {
         Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
     }
-    string UserName = ViewBag.UserName;
-    int id = 0;
-    int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
 
 <br/>
@@ -20,12 +19,12 @@
 
 <p>
     <br />
-    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllBlogs", "Blog", new {id = ViewBag.ID, UserName = ViewBag.UserName})';return false;">View All Blogs &raquo;</button>
-    <button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("InsertBlog", "Blog", new {id = ViewBag.ID, UserName = ViewBag.UserName})';return false;">Add Blog &raquo;</button>
-    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyBlogs", "Blog", new {id = ViewBag.ID, UserName = ViewBag.UserName})';return false;">View My Blogs &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllBlogs", "Blog")';return false;">View All Blogs &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("InsertBlog", "Blog")';return false;">Add Blog &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyBlogs", "Blog")';return false;">View My Blogs &raquo;</button>
 </p>
 
-@using (Html.BeginForm(new { id = id, UserName = UserName }))
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     

@@ -3,7 +3,10 @@
 
 @{
     ViewBag.Title = "View All Blogs";
-    if (ViewBag.ID == 0)
+
+    int ID = Convert.ToInt16(Session["ID"]);
+
+    if (ID == 0)
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
@@ -12,17 +15,14 @@
         Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
     }
 
-    string temp = Convert.ToString(Session["UserName"]);
-    int temp2 = Convert.ToInt32(Session["ID"]);
-
 }
 <br/>
 <h2>📜 View All Blogs</h2>
 <p>
     <br />
-    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllBlogs", "Blog", new {id = ViewBag.ID, UserName = ViewBag.UserName})';return false;">View All Blogs &raquo;</button>
-    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("InsertBlog", "Blog", new {id = ViewBag.ID, UserName = ViewBag.UserName})';return false;">Add Blog &raquo;</button>
-    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyBlogs", "Blog", new {id = ViewBag.ID, UserName = ViewBag.UserName})';return false;">View My Blogs &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllBlogs", "Blog")';return false;">View All Blogs &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("InsertBlog", "Blog")';return false;">Add Blog &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyBlogs", "Blog")';return false;">View My Blogs &raquo;</button>
 </p>
 <table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0">
     <tr class="table-primary">
@@ -49,14 +49,14 @@
         </td>
     
         <td>
-            @Html.ActionLink("View", "ViewBlog", new { BlogID = item.BlogID, id = ViewBag.ID, UserName = ViewBag.UserName, Blog = item })
+            @Html.ActionLink("View", "ViewBlog", new { BlogID = item.BlogID, Blog = item })
         </td>
         <td>
             @{
                 DBController db = new DBController();
-                if (db.SelectTypeById(ViewBag.ID) == "Admin")
+                if (db.SelectTypeById(Convert.ToInt16(Session["ID"])) == "Admin")
                 {
-                    @Html.ActionLink("Delete", "DeleteBlog", new { BlogID = item.BlogID, ID = ViewBag.ID, UserName = ViewBag.UserName })
+                    @Html.ActionLink("Delete", "DeleteBlog", new { BlogID = item.BlogID })
                 }
             }
         </td>

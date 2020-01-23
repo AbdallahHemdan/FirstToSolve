@@ -2,7 +2,9 @@
 
 @{
     ViewBag.Title = "ViewGroupMembers";
-    if (ViewBag.ID == 0 || ViewBag.ID == null)
+    int ID = Convert.ToInt16(Session["ID"]);
+
+    if (ID == 0)
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
@@ -10,20 +12,16 @@
     {
         Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
     }
-    string UserName = ViewBag.UserName;
-    int id = 0;
-    int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
 
 <h2>View Group Contests</h2>
 <tr>
-    <th>
-        @Html.ActionLink("Contests", "ViewGroupContests", new {GroupId = ViewBag.GroupId ,id = id, UserName = UserName})
-    </th>
-    <th>
-        @Html.ActionLink("Members", "ViewGroupMembers", new {GroupId = ViewBag.GroupId, id = id, UserName = UserName})
-    </th>
+    <br />
+    <button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllGroups", "Group")';return false;">All Groups &raquo;</button>
+    <button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyGroups", "Group")';return false;">My Groups &raquo;</button>
+    <button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("CreateGroup", "Group")';return false;">Create Group &raquo;</button>
 </tr>
+
 <table class="table">
     <tr>
         <th>

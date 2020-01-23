@@ -3,7 +3,10 @@
 
 @{
     ViewBag.Title = "ViewContests";
-    if (ViewBag.ID == 0 || ViewBag.ID == null)
+
+    int ID = Convert.ToInt16(Session["ID"]);
+
+    if (ID == 0)
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
@@ -11,36 +14,29 @@
     {
         Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
     }
-    string UserName = ViewBag.UserName;
-    int id = 0;
-    int.TryParse(Convert.ToString(ViewBag.ID), out id);
 }
 <br />
 <h2>🎯 Contests</h2>
 
 <p>
 	<br />
-	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("InsertContest", "Contest", new {id, UserName})';return false;">Create a new contest &raquo;</button>
-	<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyContests", "Contest", new {id, UserName})';return false;">View my contests &raquo;</button>
+	<button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("InsertContest", "Contest")';return false;">Create a Contest &raquo;</button>
+	<button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyContests", "Contest")';return false;">My Contests &raquo;</button>
 </p>
 
 <table id="dtBasicExample" class="table table-hover table-bordered " cellspacing="0">
     <tr class="table-primary">
         <th>
-            @*@Html.DisplayNameFor(model => model.ContestName)*@
-			Contest Name
+			Name
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.ContestDate)*@
-			Contest Date
+			Date
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.ContestLength)*@
-			Contest Length
+			Length
         </th>
         <th>
-            @*@Html.DisplayNameFor(model => model.ContestWriterName)*@
-			Contest Writer
+			Owner
         </th>
 		<th>
 			🔎Explore
@@ -64,14 +60,14 @@
                 @Html.DisplayFor(modelItem => item.ContestWriterName)
             </td>
             <td>
-                @Html.ActionLink("View", "ContestProblems", "Contest", new { ContestID = item.ContestID, id = id, UserName = UserName }, null)
+                @Html.ActionLink("View", "ContestProblems", "Contest", new { ContestID = item.ContestID }, null)
             </td>
             <td>
                 @{
                     DBController db = new DBController();
-                    if (db.SelectTypeById(ViewBag.ID) == "Admin")
+                    if (db.SelectTypeById(Convert.ToInt16(Session["ID"])) == "Admin")
                     {
-                        @Html.ActionLink("Delete", "DeleteContest", new { ContestID = item.ContestID, id = ViewBag.ID, UserName = ViewBag.UserName })
+                        @Html.ActionLink("Delete", "DeleteContest", new { ContestID = item.ContestID }, null)
                     }
                 }
             </td>

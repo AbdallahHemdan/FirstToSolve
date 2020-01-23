@@ -2,7 +2,10 @@
 
 @{
     ViewBag.Title = "NoFriends";
-    if (ViewBag.ID == 0 || ViewBag.ID == null)
+
+    int ID = Convert.ToInt16(Session["ID"]);
+
+    if (ID == 0)
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
@@ -10,20 +13,16 @@
     {
         Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
     }
-    string s = ViewBag.UserName;
-    int IV = 0;
-    bool Done = int.TryParse(Convert.ToString(ViewBag.ID), out IV);
 }
 
+<p>
+    <br />
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllUsers", "User")';return false;">View All Users &raquo;</button>
+    <button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("AddFriend", "User")';return false;">Add Friend &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("Friends", "User")';return false;">View My Friends &raquo;</button>
+
+</p>
 
 <br />
 <h2 style="color: #a52a2a">❌ Sorry, you have no friends..</h2>
 
-
-<p>
-    <br />
-    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllUsers", "User", new {id = IV, UserName  = s})';return false;">View All Users &raquo;</button>
-    <button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("AddFriend", "User",new {ID = IV, UserName  = s})';return false;">Add Friend &raquo;</button>
-    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("Friends", "User", new {ID = IV, UserName  = s})';return false;">View My Friends &raquo;</button>
-
-</p>

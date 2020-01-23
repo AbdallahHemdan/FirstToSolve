@@ -2,7 +2,9 @@
 
 @{
     ViewBag.Title = "View My Blogs";
-    if (ViewBag.ID == 0)
+    int ID = Convert.ToInt16(Session["ID"]);
+
+    if (ID == 0)
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
@@ -15,9 +17,9 @@
 <h2>ViewMyBlogs</h2>
 <p>
     <br />
-    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllBlogs", "Blog", new {ID = ViewBag.ID, UserName = ViewBag.UserName})';return false;">View All Blogs &raquo;</button>
-    <button style="margin-right:6px;" class="btn btn-outline-primary" onclick="location.href='@Url.Action("InsertBlog", "Blog", new {ID = ViewBag.ID, UserName = ViewBag.UserName})';return false;">Add Blog &raquo;</button>
-    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyBlogs", "Blog", new {ID = ViewBag.ID, UserName = ViewBag.UserName})';return false;">View My Blogs &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewAllBlogs", "Blog")';return false;">View All Blogs &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("InsertBlog", "Blog")';return false;">Add Blog &raquo;</button>
+    <button class="btn btn-outline-primary" onclick="location.href='@Url.Action("ViewMyBlogs", "Blog")';return false;">View My Blogs &raquo;</button>
 </p>
 
 <table class="table">

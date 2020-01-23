@@ -232,6 +232,7 @@
     <Content Include="Views\Blog\EmptyBlogs.cshtml" />
     <Content Include="Views\Blog\MustSignIn.cshtml" />
     <Content Include="Views\User\CanNot.cshtml" />
+    <Content Include="Views\User\EmptyUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

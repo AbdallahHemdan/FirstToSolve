@@ -1,18 +1,18 @@
 ﻿@model List<A4A.Models.ProblemModel>
 
 @{
-	ViewBag.Title = "ContestProblems";
-	if (ViewBag.ID == 0 || ViewBag.ID == null)
-	{
-		Layout = "~/Views/Shared/_Layout.cshtml";
-	}
-	else
-	{
-		Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
-	}
-	string UserName = ViewBag.UserName;
-	int id = 0;
-	int.TryParse(Convert.ToString(ViewBag.ID), out id);
+    ViewBag.Title = "ContestProblems";
+
+    int ID = Convert.ToInt16(Session["ID"]);
+
+    if (ID == 0)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
 }
 
 <br />
@@ -44,7 +44,7 @@
 			@Html.DisplayFor(modelItem => item.ProblemDifficulty)
 		</td>
 		<td>
-			@Html.ActionLink("View", "ViewProblem", "Problem", new { ProblemLink = item.ProblemLink, id= id, UserName = UserName, ProblemID = item.ProblemID }, null)
+			@Html.ActionLink("View", "ViewProblem", "Problem", new { ProblemLink = item.ProblemLink, ProblemID = item.ProblemID }, null)
 		</td>
 	</tr>
 }

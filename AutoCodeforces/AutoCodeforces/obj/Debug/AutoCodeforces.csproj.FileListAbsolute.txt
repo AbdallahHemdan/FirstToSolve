@@ -1,0 +1,17 @@
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\AutoCodeforces.exe.config
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\AutoCodeforces.exe
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\AutoCodeforces.pdb
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\WebDriver.dll
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\WebDriver.Support.dll
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\WebDriver.xml
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\bin\Debug\WebDriver.Support.xml
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\obj\Debug\AutoCodeforces.csprojResolveAssemblyReference.cache
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\obj\Debug\AutoCodeforces.exe
+D:\Desktop\A4A\A4A\AutoCodeforces\AutoCodeforces\obj\Debug\AutoCodeforces.pdb

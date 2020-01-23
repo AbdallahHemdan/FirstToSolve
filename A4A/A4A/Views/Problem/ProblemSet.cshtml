@@ -3,7 +3,10 @@
 
 @{
     ViewBag.Title = "Problem Set";
-    if (ViewBag.ID == 0)
+
+    int ID = Convert.ToInt16(Session["ID"]);
+
+    if (ID == 0)
     {
         Layout = "~/Views/Shared/_Layout.cshtml";
     }
@@ -45,14 +48,14 @@
                 @Html.DisplayFor(modelItem => item.ProblemDifficulty)
             </td>
             <td>
-                @Html.ActionLink("View", "ViewProblem", "Problem", new { ProblemLink = item.ProblemLink, UserName = ViewBag.UserName, id = ViewBag.ID, ProblemID = item.ProblemID }, null)
+                @Html.ActionLink("View", "ViewProblem", "Problem", new { ProblemLink = item.ProblemLink, ProblemID = item.ProblemID }, null)
             </td>
             <td>
                 @{
                     DBController db = new DBController();
-                    if (db.SelectTypeById(ViewBag.ID) == "Admin")
+                    if (db.SelectTypeById(Convert.ToInt16(Session["ID"])) == "Admin")
                     {
-                        @Html.ActionLink("Delete", "DeleteProblem", new { ProblemID = item.ProblemID, ID = ViewBag.ID, UserName = ViewBag.UserName })
+                        @Html.ActionLink("Delete", "DeleteProblem", new { ProblemID = item.ProblemID})
                     }
                 }
             </td>

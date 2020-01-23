@@ -15,11 +15,12 @@ namespace A4A.Controllers
 {
     public class ProblemController : Controller
     {
-        public ActionResult ProblemSet(int id = 0, string UserName = "Login")
+        public ActionResult ProblemSet()
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectProblems();
-            List<ProblemModel> list = new List<ProblemModel>();
+
+            List<ProblemModel> Problems = new List<ProblemModel>();
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 ProblemModel problem = new ProblemModel();
@@ -28,35 +29,33 @@ namespace A4A.Controllers
                 problem.ProblemLink = Convert.ToString(dt.Rows[i]["ProblemLink"]);
                 problem.ProblemID = Convert.ToString(dt.Rows[i]["ProblemID"]);
                 problem.ProblemDifficulty = int.Parse(Convert.ToString(dt.Rows[i]["ProblemDifficulty"]));
-                list.Add(problem);
+                Problems.Add(problem);
             }
 
-            ViewBag.UserName = UserName;
-            ViewBag.ID = id;
-            return View(list);
+            return View(Problems);
         }
 
         // GET: Problem
         [Route("Problem/ViewProblem")]
-        public ActionResult ViewProblem(string ProblemID, string ProblemLink, string UserName = "Login", int id = 0)
+        public ActionResult ViewProblem(string ProblemID, string ProblemLink)
         {
             ProblemModel Problem = new ProblemModel
             {
                 ProblemLink = ProblemLink,
                 ProblemID = ProblemID,
             };
-
-            ViewBag.ID = id;
-            ViewBag.UserName = UserName;
+          
             return View(Problem);
         }
 
-        public ActionResult ViewSubmission(int SubmissionID, int id, string UserName)
+        public ActionResult ViewSubmission(int SubmissionID)
         {
             DBController db = new DBController();
             DataTable dt = db.GetSubmissionByID(SubmissionID);
 
-            List<SubmissionModel> list = new List<SubmissionModel>();
+            string UserName = Session["UserName"].ToString();
+
+            List<SubmissionModel> Submissions = new List<SubmissionModel>();
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 SubmissionModel Submission = new SubmissionModel();
@@ -75,19 +74,20 @@ namespace A4A.Controllers
                 Submission.ProblemID = Convert.ToString(dt.Rows[i]["ProblemID"]);
                 ViewBag.ProblemName = db.GetProblemNameByID(Submission.ProblemID);
 
-                list.Add(Submission);
+                Submissions.Add(Submission);
             }
 
-            ViewBag.ID = id;
-            ViewBag.UserName = UserName;
-            return View(list);
+            return View(Submissions);
         }
 
         [HttpPost]
-        public ActionResult Submit(ProblemModel Problem, string ProblemID, int id, string UserName)
+        public ActionResult Submit(ProblemModel Problem, string ProblemID)
         {
             int pos, ContestID;
             bool isTwoChars = int.TryParse(ProblemID.Substring(ProblemID.Length - 1), out pos);
+
+            int ID = Convert.ToInt16(Session["ID"]);
+
             if (isTwoChars)
             {
                 ContestID = int.Parse(ProblemID.Substring(0, ProblemID.Length - 2));
@@ -96,20 +96,22 @@ namespace A4A.Controllers
             {
                 ContestID = int.Parse(ProblemID.Substring(0, ProblemID.Length - 1)); 
             }
+
             Automate Judge = new Automate();
             Judge.OpenCodeforces(Problem.ProblemCode, ProblemID);
+
             string SubmissionJson = Judge.SubmissionJsonFile("A4A_A4A", ContestID);
             Helpers.SubmissionHelper helper = new Helpers.SubmissionHelper();
-            int SubmissionID = helper.ParseSubmission(SubmissionJson, id, Problem.ProblemContestID);
-            return RedirectToAction("ViewSubmission", new { SubmissionID = SubmissionID, id = id, UserName = UserName });
+            int SubmissionID = helper.ParseSubmission(SubmissionJson, ID, Problem.ProblemContestID);
+
+            return RedirectToAction("ViewSubmission", new { SubmissionID = SubmissionID});
         }
-        public ActionResult DeleteProblem(string ProblemID, int id = 0, string UserName = "")
+
+        public ActionResult DeleteProblem(string ProblemID)
         {
             DBController db = new DBController();
             db.DeleteProblem(ProblemID);
 
-            ViewBag.Id = id;
-            ViewBag.UserName = UserName;
             return RedirectToAction("ProblemSet");
         }
     }

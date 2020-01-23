@@ -11,22 +11,18 @@ namespace A4A.Controllers
 {
     public class TeamController : Controller
     {
-        public ActionResult Index()
+        public ActionResult CreateTeam()
         {
-            return RedirectToAction("ViewAllTeams");
-        }
-        public ActionResult CreateTeam(int id = 0, string UserName = "")
-        {
-            ViewBag.id = id;
-            ViewBag.UserName = UserName;
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateTeam(TeamModel TM, int LeaderId = 0, string UserName = "")
+        public ActionResult CreateTeam(TeamModel TM)
         {
-            if (LeaderId == null || LeaderId == 0)
+            int ID = Convert.ToInt16(Session["ID"]);
+
+            if (ID == 0)
             {
                 return RedirectToAction("MustSignIn");
             }
@@ -34,24 +30,28 @@ namespace A4A.Controllers
             DBController db = new DBController();
 
             TM.TeamID = db.Count_Teams() + 2;
-            TM.LeaderID = LeaderId;
+            TM.LeaderID = ID;
 
             db.InsertTeam(TM);
             db.InsertTeamMembers(TM.TeamID, TM.LeaderID);
             db.InsertTeamMembers(TM.TeamID, db.Select_Id_by_Email(TM.Member2));
             db.InsertTeamMembers(TM.TeamID, db.Select_Id_by_Email(TM.Member3));
 
-            ViewBag.id = LeaderId;
-            ViewBag.UserName = UserName;
-            return RedirectToAction("ViewMyTeams", "Team", new {id = LeaderId, UserName = UserName});
+            return RedirectToAction("ViewMyTeams", "Team");
         }
 
-        public ActionResult ViewAllTeams(int id = 0, string UserName = "")
+        public ActionResult ViewAllTeams()
         {
             DBController dbController = new DBController();
             DataTable dt = dbController.SelectTeams();
 
+            if (dt == null)
+            {
+                return RedirectToAction("EmptyTeams");
+            }
+
             List<TeamModel> Teams = new List<TeamModel>();
+
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
                 TeamModel Team = new TeamModel();
@@ -62,25 +62,26 @@ namespace A4A.Controllers
                 Teams.Add(Team);
             }
 
-            ViewBag.id = id;
-            ViewBag.UserName = UserName;
-
             return View(Teams);
         }
-        public ActionResult ViewMyTeams(int id = 0, string UserName = "")
+
+        public ActionResult ViewMyTeams()
         {
-            if (id == null || id == 0)
+            int ID = Convert.ToInt16(Session["ID"]);
+
+            if (ID == 0)
             {
                 return RedirectToAction("MustSignIn");
             }
 
             DBController dbController = new DBController();
-            DataTable dt = dbController.Select_Teams_of_Member(id);
+            DataTable dt = dbController.Select_Teams_of_Member(ID);
             
             if (dt == null)
             {
                 return RedirectToAction("EmptyTeams");
             }
+
             List<TeamModel> Teams = new List<TeamModel>();
             for (int i = 0; i < dt.Rows.Count; ++i)
             {
@@ -93,14 +94,13 @@ namespace A4A.Controllers
                 Teams.Add(Team);
             }
 
-            ViewBag.id = id;
-            ViewBag.UserName = UserName;
             return View(Teams);
         }
 
-        public ActionResult ViewTeam(int TeamID, int id = 0, string UserName = "")
+        public ActionResult ViewTeam(int TeamID)
         {
             DBController db = new DBController();
+
             DataTable TeamRow = db.Select_Team_By_ID(TeamID);
             DataTable TeamMembers = db.Select_Team_members_Names(TeamID);
 
@@ -121,10 +121,12 @@ namespace A4A.Controllers
             {
                 MembersIDS[1] = MembersIDS[0];
             }
+
             else if (MembersIDS[2] == TM.LeaderID)
             {
                 MembersIDS[2] = MembersIDS[0];
             }
+
             MembersIDS[0] = TM.LeaderID;
 
             ViewBag.Leader  = Convert.ToString(db.SelectUserNameByID(MembersIDS[0]).Rows[0]["Fname"]) +
@@ -134,8 +136,6 @@ namespace A4A.Controllers
             ViewBag.Member3 = Convert.ToString(db.SelectUserNameByID(MembersIDS[2]).Rows[0]["Fname"]) +
                               Convert.ToString(db.SelectUserNameByID(MembersIDS[2]).Rows[0]["Lname"]);
 
-            ViewBag.id = id;
-            ViewBag.UserName = UserName;
             return View(TM);
         }
 
@@ -145,36 +145,39 @@ namespace A4A.Controllers
 
             return View();
         }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
         }
+
         public ActionResult TeamOptions()
         {
             return View();
         }
+
         public ActionResult SuccessfulCreationOfTeam()
         {
             return View();
         }
+
         public ActionResult EmptyTeams()
         {
             return View();
         }
+
         public ActionResult MustSignIn()
         {
             return View();
         }
 
-        public ActionResult DeleteTeam(int TeamID, int id = 0, string UserName = "")
+        public ActionResult DeleteTeam(int TeamID)
         {
             DBController db = new DBController();
             db.DeleteTeam(TeamID);
 
-            ViewBag.Id = id;
-            ViewBag.UserName = UserName;
             return RedirectToAction("ViewAllTeams");
         }
     }

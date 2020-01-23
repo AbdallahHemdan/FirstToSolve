@@ -9,7 +9,7 @@ namespace A4A.DataAccess
 {
     public class DBManager
     {
-        static string DB_Connection_String = @"Data Source=DESKTOP-QQQ2GTU;Initial Catalog=A4A;Integrated Security=True";
+        static string DB_Connection_String = @"Data Source=.;Initial Catalog=A4A;Integrated Security=True";
         SqlConnection myConnection;
         public DBManager()
         {

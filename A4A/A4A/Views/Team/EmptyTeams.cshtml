@@ -1,6 +1,15 @@
 ﻿@{
     ViewBag.Title = "EmptyTeams";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    int ID = Convert.ToInt16(Session["ID"]);
+
+    if (ID == 0)
+    {
+        Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+    else
+    {
+        Layout = "~/Views/Shared/User_LayoutPage1.cshtml";
+    }
 }
 
 <br/>
