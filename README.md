@@ -1,8 +1,7 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=400px height=210px src="https://github.com/AbdallahHemdan/A4A/blob/master/Screenshots/71863077-74f40200-3104-11ea-9dd7-f743783a182f.png" alt="FirstToSolve logo"></a>
+ <img width=822px height=456px src="https://github.com/AbdallahHemdan/FirstToSolve/blob/master/Screenshots/Logo.png" alt="FirstToSolve logo"></a>
 </p>
-<h3 align="center">First To Solve</h3>
 
 <div align="center">
 
@@ -14,12 +13,34 @@
 
 </div>
 
+<p align="center"> 🏆 A competitive programming website to manage competitive programming activities with a virtual judge.
+    <br> 
+</p>
+
 ---
-### 🔎 What is ```FirstToSolve``` ❔❕
+### 🧐 About
 --------------------------------
 **FirstToSolve** is a competitive programming website to manage competitive programming <br> regular activities, It is maintained by a group of competitive programmers from FECU to help competitive programmer to train for problems from different topic and compete with each other to get maximum benefit from the training.
 
 **We aren't a real judge**, actually we are a virtual judge not a real judge, we grab problems from other regular online judges like CodeForces, HackerRank, UVA, SPOJ .. etc and simulate submissions to other online judges and provide the user with the verdict besides adding more additional features like __Creating Contests, Groups, Teams and Organizations, Writing blogs and share it with CP community.__
+
+
+## 🏁 Install <a name = "Install"></a>
+1. Install [Visual Studio](https://visualstudio.microsoft.com/) with .NET environment.
+2. Install [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-2019).
+3. Execute ```Delivery Script``` on the ```SQL Server```.
+4. Open the ```A4A.sln``` file in the ```A4A``` folder.
+5. Build the all the projects then run it.
+
+**Note:** Do not forget to change the ```DB_Connection_String``` in ```DBManager.cs```.
+
+## ⛏️ Built Using <a name = "tech"></a>
+- [C#](https://docs.microsoft.com/en-us/dotnet/csharp/) - Object-oriented language that enables developers to build .NET applications.
+- [ASP.NET MVC](https://dotnet.microsoft.com/apps/aspnet/mvc) - A design pattern for achieving a clean separation of concerns.
+- [SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-2019) - Relational database management system developed by Microsoft.
+- [Selenium](https://selenium.dev/) -  Portable framework for testing web applications.
+
+
 
 ### 📷 ScreenShots 
 -------------------
