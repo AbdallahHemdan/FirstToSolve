@@ -1,6 +1,6 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=822px height=456px src="https://github.com/AbdallahHemdan/FirstToSolve/blob/master/Screenshots/Logo.png" alt="FirstToSolve logo"></a>
+ <img width=500px height=399px src="https://github.com/AbdallahHemdan/FirstToSolve/blob/master/Screenshots/Logo.png" alt="FirstToSolve logo"></a>
 </p>
 
 <div align="center">
