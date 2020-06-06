@@ -1,6 +1,9 @@
 <p align="center">
   <a href="" rel="noopener">
- <img width=500px height=399px src="https://github.com/AbdallahHemdan/FirstToSolve/blob/master/Screenshots/Logo.png" alt="FirstToSolve logo"></a>
+ 
+ ![First to solve](https://user-images.githubusercontent.com/40190772/83947440-295e9500-a817-11ea-906c-9557727849aa.png)
+
+  </a>
 </p>
 
 <div align="center">
